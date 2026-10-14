@@ -4,44 +4,239 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %> | Cloud Monitoring</title>
+
+  <title><%= title %> | Cloud Pulse</title>
+
   <link rel="stylesheet" href="/css/style.css">
+  
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="/js/dashboard.js" defer></script>
 </head>
+
 <body>
-  <header class="navbar">
-    <a class="brand" href="/">☁ Cloud Pulse</a>
-    <span class="status"><span class="dot"></span> <%= status %></span>
-  </header>
+  <div class="app-layout">
 
-  <main class="hero">
-    <p class="eyebrow">CLOUD INFRASTRUCTURE</p>
-    <h1>Your cloud.<br><span>In clear view.</span></h1>
-    <p class="description">
-      A cloud infrastructure dashboard designed to make
-      application health, availability and performance easier to understand.
-    </p>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a href="/" class="brand">
+        <span class="brand-icon">☁</span>
+        <span>Cloud<span class="brand-accent">Pulse</span></span>
+      </a>
 
-    <div class="dashboard">
-      <div class="metric">
-        <p>Application</p>
-        <h2>Online</h2>
-        <span>Local development server</span>
-      </div>
-      <div class="metric">
-        <p>Runtime</p>
-        <h2>Node.js</h2>
-        <span>Express application</span>
-      </div>
-      <div class="metric">
-        <p>Environment</p>
-        <h2>Development</h2>
-        <span>Running on your computer</span>
-      </div>
-    </div>
+      <div class="sidebar-label">WORKSPACE</div>
 
-    <p class="note">
-      These are application demo indicators, not live AWS metrics.
-    </p>
-  </main>
+      <nav class="sidebar-nav">
+        <a href="#overview" class="nav-link active">
+          <span>▦</span> Overview
+        </a>
+        <a href="#instances" class="nav-link">
+          <span>▣</span> EC2 Instances
+        </a>
+        <a href="#load-balancer" class="nav-link">
+          <span>⇄</span> Load Balancer
+        </a>
+        <a href="#storage" class="nav-link">
+          <span>▤</span> S3 Storage
+        </a>
+        <a href="#monitoring" class="nav-link">
+          <span>⌁</span> Monitoring
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="connection-indicator">
+          <span class="status-dot"></span>
+          <div>
+            <strong>Local environment</strong>
+            <small>Demo mode enabled</small>
+          </div>
+        </div>
+        <p class="sidebar-footer">CLOUD PULSE · v1.0</p>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content" id="overview">
+
+      <header class="topbar">
+        <div>
+          <p class="breadcrumb">Workspace / Overview</p>
+          <h1>Cloud Overview</h1>
+        </div>
+
+        <div class="topbar-right">
+          <span class="environment-badge">
+            <span class="status-dot"></span>
+            <%= status %>
+          </span>
+          <div class="avatar">CP</div>
+        </div>
+      </header>
+
+      <section class="welcome-section">
+        <div>
+          <p class="eyebrow">INFRASTRUCTURE CONTROL CENTER</p>
+          <h2>Your cloud, <span>in clear view.</span></h2>
+          <p class="welcome-description">
+            Monitor your infrastructure, understand resource usage,
+            and keep your applications in view from one dashboard.
+          </p>
+        </div>
+        <div class="welcome-icon">☁</div>
+      </section>
+
+      <!-- Summary metrics -->
+      <section class="metrics-grid" aria-label="Infrastructure summary">
+
+        <article class="metric-card">
+          <div class="metric-heading">
+            <span>EC2 INSTANCES</span>
+            <span class="metric-icon blue">▣</span>
+          </div>
+          <div class="metric-value">02</div>
+          <div class="metric-description">
+            <span class="mini-dot green"></span>
+            Sample running instances
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-heading">
+            <span>CPU UTILIZATION</span>
+            <span class="metric-icon purple">⌁</span>
+          </div>
+          <div class="metric-value">24.8<span class="unit">%</span></div>
+          <div class="metric-description">Illustrative average usage</div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-heading">
+            <span>LOAD BALANCER</span>
+            <span class="metric-icon cyan">⇄</span>
+          </div>
+          <div class="metric-value">Healthy</div>
+          <div class="metric-description">
+            <span class="mini-dot green"></span>
+            Demo status only
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-heading">
+            <span>STORAGE</span>
+            <span class="metric-icon orange">▤</span>
+          </div>
+          <div class="metric-value">03</div>
+          <div class="metric-description">Example cloud resources</div>
+        </article>
+
+      </section>
+
+      <!-- Charts -->
+      <section class="content-grid" id="monitoring">
+
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div>
+              <h3>Resource utilization</h3>
+              <p>Illustrative CPU usage over time</p>
+            </div>
+            <span class="demo-badge">DEMO DATA</span>
+          </div>
+
+          <div class="chart-container">
+            <canvas id="cpuChart" aria-label="Illustrative CPU utilization chart"></canvas>
+          </div>
+        </article>
+
+        <article class="panel health-panel">
+          <div class="panel-heading">
+            <div>
+              <h3>System health</h3>
+              <p>Application environment</p>
+            </div>
+          </div>
+
+          <div class="health-status">
+            <div class="health-check">✓</div>
+            <div>
+              <h4>Application available</h4>
+              <p>Local Express server</p>
+            </div>
+          </div>
+
+          <div class="health-divider"></div>
+
+          <div class="health-row">
+            <span>Web application</span>
+            <span class="health-value">
+              <span class="mini-dot green"></span> Running
+            </span>
+          </div>
+
+          <div class="health-row">
+            <span>AWS connection</span>
+            <span class="health-value muted">Not connected</span>
+          </div>
+
+          <div class="health-row">
+            <span>CloudWatch</span>
+            <span class="health-value muted">Not connected</span>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Infrastructure -->
+      <section class="panel infrastructure-panel" id="instances">
+        <div class="panel-heading">
+          <div>
+            <h3>Infrastructure overview</h3>
+            <p>Example architecture for the Cloud Pulse project</p>
+          </div>
+          <span class="demo-badge">PLANNED ARCHITECTURE</span>
+        </div>
+
+        <div class="infrastructure-flow">
+          <div class="infra-node">
+            <div class="infra-icon blue">◎</div>
+            <strong>Internet</strong>
+            <small>Incoming traffic</small>
+          </div>
+
+          <div class="infra-arrow">→</div>
+
+          <div class="infra-node" id="load-balancer">
+            <div class="infra-icon purple">⇄</div>
+            <strong>Load Balancer</strong>
+            <small>Traffic distribution</small>
+          </div>
+
+          <div class="infra-arrow">→</div>
+
+          <div class="infra-node">
+            <div class="infra-icon cyan">▣</div>
+            <strong>EC2 Instances</strong>
+            <small>Web servers</small>
+          </div>
+
+          <div class="infra-arrow">→</div>
+
+          <div class="infra-node" id="storage">
+            <div class="infra-icon orange">▤</div>
+            <strong>Amazon S3</strong>
+            <small>Object storage</small>
+          </div>
+        </div>
+      </section>
+
+      <footer class="main-footer">
+        <span>Cloud Pulse — Cloud infrastructure visibility</span>
+        <span>Development environment · Sample metrics</span>
+      </footer>
+
+    </main>
+  </div>
 </body>
 </html>
