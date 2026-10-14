@@ -1,0 +1,122 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #edf4ff;
+  background:
+    radial-gradient(ellipse at 80% 10%, #173a67 0, transparent 40%),
+    linear-gradient(135deg, #07111f, #0b1930 65%, #10152b);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 8%;
+  border-bottom: 1px solid #26364d;
+}
+
+.brand {
+  color: #fff;
+  text-decoration: none;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.status {
+  color: #b9c9df;
+  font-size: 13px;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #4ade80;
+}
+
+.hero {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 90px 25px 60px;
+}
+
+.eyebrow {
+  color: #67c5ff;
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: clamp(44px, 7vw, 76px);
+  line-height: 1.05;
+  margin: 22px 0;
+}
+
+h1 span {
+  color: #73baff;
+}
+
+.description {
+  max-width: 600px;
+  color: #a8b8ce;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 55px;
+}
+
+.metric {
+  padding: 25px;
+  border: 1px solid #2a405c;
+  border-radius: 15px;
+  background: #12223a;
+}
+
+.metric p,
+.metric span {
+  color: #a8b8ce;
+  font-size: 13px;
+}
+
+.metric h2 {
+  font-size: 23px;
+  margin: 18px 0 12px;
+}
+
+.note {
+  margin-top: 22px;
+  color: #8194ad;
+  font-size: 12px;
+}
+
+@media (max-width: 650px) {
+  .navbar {
+    padding: 20px;
+  }
+
+  .status {
+    font-size: 11px;
+  }
+
+  .hero {
+    padding-top: 60px;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}

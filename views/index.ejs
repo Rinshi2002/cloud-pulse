@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Cloud Monitoring</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="/">☁ Cloud Pulse</a>
+    <span class="status"><span class="dot"></span> <%= status %></span>
+  </header>
+
+  <main class="hero">
+    <p class="eyebrow">CLOUD INFRASTRUCTURE</p>
+    <h1>Your cloud.<br><span>In clear view.</span></h1>
+    <p class="description">
+      A cloud infrastructure dashboard designed to make
+      application health, availability and performance easier to understand.
+    </p>
+
+    <div class="dashboard">
+      <div class="metric">
+        <p>Application</p>
+        <h2>Online</h2>
+        <span>Local development server</span>
+      </div>
+      <div class="metric">
+        <p>Runtime</p>
+        <h2>Node.js</h2>
+        <span>Express application</span>
+      </div>
+      <div class="metric">
+        <p>Environment</p>
+        <h2>Development</h2>
+        <span>Running on your computer</span>
+      </div>
+    </div>
+
+    <p class="note">
+      These are application demo indicators, not live AWS metrics.
+    </p>
+  </main>
+</body>
+</html>
